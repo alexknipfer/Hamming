@@ -5,6 +5,9 @@
 
 using namespace std;
 
+#define WORDSIZE 16
+#define MAX_SIZE_WORD 21
+
 int main(){
   Hamming hamming;
   ifstream inputFile("data.txt");
@@ -20,11 +23,10 @@ int main(){
   while(word1 != "-1"){
       //go print the original words
     hamming.printOriginalWords(word1, word2, outputFile);
+    hamming.placeParityBits();
     inputFile >> word1;
     inputFile >> word2;
   }
-
-
   return 0;
 }
 
@@ -53,4 +55,43 @@ void Hamming::printOriginalWords(string word1, string word2, ofstream &outputFil
   outputFile << "                     " << word1 << endl;
   outputFile << "                     " << word2 << endl;
   outputFile << endl;
+
+  word1Final = word1;
+  word2Final = word2;
+
+    //store word in array
+  for(int x = 0; x < WORDSIZE; x++){
+    word[x] = word1[x];
+  }
 }
+
+//******************************************************************************
+
+void Hamming::placeParityBits(){
+    //Receives - nothing
+    //Task - places word in array with parity bits in location
+    //Returns - nothing
+
+  int count = 0;
+
+    //build parity bit array
+  for(int x = 0; x < MAX_SIZE_WORD; x++){
+      //if value is a parity bit, don't insert bit, use dash
+    if(x == 0 || x == 1 || x == 3 || x== 7 || x == 15){
+      wordParityBits[x] = '-';
+    }
+
+      //not a parity bit, place bit in array
+    else{
+      wordParityBits[x] = word[count];
+      count++;
+    }
+  }
+
+  for(int x = 0; x < MAX_SIZE_WORD; x++){
+    cout << wordParityBits[x];
+  }
+  cout << endl;
+}
+
+//******************************************************************************
