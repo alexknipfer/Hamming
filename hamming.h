@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -16,8 +17,8 @@ class Hamming{
     string word1Final;
     string word2Final;
     int recordCount;
-    char word[16];
-    char wordParityBits[21];
+    char word[17];
+    vector<char> wordParityBits;
 };
 
 #endif

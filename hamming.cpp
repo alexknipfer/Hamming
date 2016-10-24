@@ -75,20 +75,20 @@ void Hamming::placeParityBits(){
   int count = 0;
 
     //build parity bit array
-  for(int x = 0; x < MAX_SIZE_WORD; x++){
+  for(int x = 0; x <= MAX_SIZE_WORD; x++){
       //if value is a parity bit, don't insert bit, use dash
-    if(x == 0 || x == 1 || x == 3 || x== 7 || x == 15){
-      wordParityBits[x] = '-';
+    if(x == 5 || x == 13 || x == 17 || x== 19 || x == 21){
+      wordParityBits.push_back('-');
     }
 
       //not a parity bit, place bit in array
     else{
-      wordParityBits[x] = word[count];
+      wordParityBits.push_back(word[count]);
       count++;
     }
   }
 
-  for(int x = 0; x < MAX_SIZE_WORD; x++){
+  for(int x = 0; x < wordParityBits.size(); x++){
     cout << wordParityBits[x];
   }
   cout << endl;
