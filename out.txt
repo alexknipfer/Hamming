@@ -3,3 +3,6 @@ Record # 1        Original input words are:
                      1110100111010100
                      1110100111010110
 
+                 The Input Word was stored as:
+                  -------------------------
+                     111010001110100101010
