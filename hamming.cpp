@@ -53,13 +53,11 @@ void Hamming::loadWords(string word1, string word2){
     //Task - place words in character arrays
     //Returns - nothing
 
-    //cout << word1 << endl;
-    //cout << word2 << endl;
-
-    //store word in array
+    //store word 1 in array (written into memory)
   for(int x = 0; x < WORDSIZE; x++){
     word1Array[x] = word1[x];
   }
+    //store word 2 in array (read from memory)
   for(int y = 0; y < WORDSIZE; y++){
     word2Array[y] = word2[y];
   }
@@ -84,6 +82,7 @@ void Hamming::placeCheckBitLocations(){
 
       //not a parity bit, place bit in array
     else{
+        //add to parity bit vector
       wordParityBits.push_back(word1Array[count]);
       wordParityBits2.push_back(word2Array[count]);
       count++;
@@ -107,14 +106,17 @@ void Hamming::getCheckBits(){
     //Task - calculate check bits
     //Returns - nothing
 
-  int currentNumber;
+  int numIntoMemory;
+  int numFromMemory;
 
     //calculate check bits for decimal location 1
   for(int x = 0; x < wordParityBits.size(); x++){
     if(x == 18 || x == 16 || x == 14 || x == 12 || x == 10 ||
        x == 8 || x == 6 || x == 4 || x == 2 || x == 0){
-         currentNumber = (int)wordParityBits[x] - 48; //store as integer
-         parity1.push_back(currentNumber);
+         numIntoMemory = (int)wordParityBits[x] - 48; //store as integer
+         numFromMemory = (int)wordParityBits2[x] - 48;
+         parity1.push_back(numIntoMemory);
+         _parity1.push_back(numFromMemory);
        }
   }
 
@@ -122,8 +124,10 @@ void Hamming::getCheckBits(){
   for(int x = 0; x < wordParityBits.size(); x++){
     if(x == 2 || x == 3 || x == 6 || x == 7 || x == 10 || x == 11 ||
        x == 14 || x == 15 || x == 18){
-         currentNumber = (int)wordParityBits[x] - 48; //store as integer
-         parity2.push_back(currentNumber);
+         numIntoMemory = (int)wordParityBits[x] - 48; //store as integer
+         numFromMemory = (int)wordParityBits2[x] - 48;
+         parity2.push_back(numIntoMemory);
+         _parity2.push_back(numFromMemory);
        }
   }
 
@@ -131,8 +135,10 @@ void Hamming::getCheckBits(){
   for(int x = 0; x < wordParityBits.size(); x++){
     if(x == 0 || x == 1 || x == 6 || x == 7 || x == 8 || x == 9 ||
        x == 14 || x == 15 || x == 16){
-         currentNumber = (int)wordParityBits[x] - 48; //store as integer
-         parity4.push_back(currentNumber);
+         numIntoMemory = (int)wordParityBits[x] - 48; //store as integer
+         numFromMemory = (int)wordParityBits2[x] - 48;
+         parity4.push_back(numIntoMemory);
+         _parity4.push_back(numFromMemory);
        }
   }
 
@@ -140,16 +146,20 @@ void Hamming::getCheckBits(){
   for(int x = 0; x < wordParityBits.size(); x++){
     if(x == 6 || x == 7 || x == 8 || x == 9 || x == 10 ||
        x == 11 || x == 12){
-         currentNumber = (int)wordParityBits[x] - 48; //store as integer
-         parity8.push_back(currentNumber);
+         numIntoMemory = (int)wordParityBits[x] - 48; //store as integer
+         numFromMemory = (int)wordParityBits2[x] - 48;
+         parity8.push_back(numIntoMemory);
+         _parity8.push_back(numFromMemory);
        }
   }
 
     //calculate check bits for decimal location 16
   for(int x = 0; x < wordParityBits.size(); x++){
     if(x == 0 || x == 1 || x == 2 || x == 3 || x == 4){
-      currentNumber = (int)wordParityBits[x] - 48; //store as integer
-      parity16.push_back(currentNumber);
+      numIntoMemory = (int)wordParityBits[x] - 48; //store as integer
+      numFromMemory = (int)wordParityBits2[x] - 48;
+      parity16.push_back(numIntoMemory);
+      _parity16.push_back(numFromMemory);
     }
   }
 
@@ -281,10 +291,97 @@ void Hamming::getKBitCode(){
     kbitWord.push_back(1);
   }
 
+  //***** NOW CALCULATE THE KBIT WORD FOR THE NUMBER READ FROM MEMORY **********
+
+    //reset count
   count = 0;
 
-  for(int x = 0; x < kbitWord.size(); x++){
-    syndromeWordFinal += kbitWord[x];
+    //check parity bit for decimal location 16
+  for(int x = 0; x < _parity16.size(); x++){
+    if(_parity16[x] == 1){
+      count++;
+    }
+  }
+
+    //if the value is even the resulting bit is a 0
+  if(count % 2 == 0){
+    kbitWord2.push_back(0);
+  }
+    //resulting value is a 1
+  else{
+    kbitWord2.push_back(1);
+  }
+
+  count = 0;  //reset count
+
+    //check parity bit for decimal location 8
+  for(int x = 0; x < _parity8.size(); x++){
+    if(_parity8[x] == 1){
+      count++;
+    }
+  }
+
+    //resulting bit is a 0 if even
+  if(count % 2 == 0){
+    kbitWord2.push_back(0);
+  }
+    //resulting bit is a 1 if odd
+  else{
+    kbitWord2.push_back(1);
+  }
+
+  count = 0;  //reset count
+
+    //check parity bit for decimal location 4
+  for(int x = 0; x < _parity4.size(); x++){
+    if(_parity4[x] == 1){
+      count++;
+    }
+  }
+
+    //resulting bit is a 0 if odd
+  if(count % 2 == 0){
+    kbitWord2.push_back(0);
+  }
+    //resulting bit is a 1 if odd
+  else{
+    kbitWord2.push_back(1);
+  }
+
+  count = 0;  //reset count
+
+    //check parity bit for decimal location 2
+  for(int x = 0; x < _parity2.size(); x++){
+    if(_parity2[x] == 1){
+      count++;
+    }
+  }
+
+    //resulting bit is a 0 if even
+  if(count % 2 == 0){
+    kbitWord2.push_back(0);
+  }
+    //resulting bit is a 1 if odd
+  else{
+    kbitWord2.push_back(1);
+  }
+
+  count = 0;  //reset count
+
+    //check parity bit for decimal location 1
+  for(int x = 0; x < _parity1.size(); x++){
+    if(_parity1[x] == 1){
+      count++;
+    }
+  }
+
+    //resulting bit is a 0 if even
+  if(count % 2 == 0){
+    kbitWord2.push_back(0);
+  }
+    //resulting bit is a 1 if odd
+  else{
+    kbitWord2.push_back(1);
   }
 }
 
@@ -320,11 +417,6 @@ void Hamming::getInputWord(){
   for(int x = 0; x < inputWord.size(); x++){
     inputWordFinal += inputWord[x];
   }
-
-  /*for(int x = 0; x< inputWord.size(); x++){
-    cout << inputWord[x];
-  }
-  cout << endl;*/
 }
 
 //******************************************************************************
@@ -351,6 +443,11 @@ void Hamming::printOriginalWords(string word1, string word2, ofstream &outputFil
   outputFile << "     K-Bit code written into memory  ---  ";
   for(int x = 0; x < kbitWord.size(); x++){
     outputFile << kbitWord[x] << " ";
+  }
+  outputFile << endl;
+  outputFile << "     K-bit code read from memory     ---  ";
+  for(int x = 0; x < kbitWord2.size(); x++){
+    outputFile << kbitWord2[x] << " ";
   }
   outputFile << endl;
 }

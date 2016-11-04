@@ -33,7 +33,13 @@ class Hamming{
     vector<int> parity4;
     vector<int> parity8;
     vector<int> parity16;
+    vector<int> _parity1;
+    vector<int> _parity2;
+    vector<int> _parity4;
+    vector<int> _parity8;
+    vector<int> _parity16;
     vector<int> kbitWord;
+    vector<int> kbitWord2;
 };
 
 #endif

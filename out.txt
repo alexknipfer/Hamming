@@ -10,3 +10,4 @@ Record # 1        Original input words are:
                  The two SYNDROME code words are:
                   -------------------------
      K-Bit code written into memory  ---  0 0 1 1 0 
+     K-bit code read from memory     ---  0 0 0 1 1 
