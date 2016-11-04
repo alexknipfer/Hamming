@@ -21,9 +21,12 @@ class Hamming{
     string word1Final;
     string word2Final;
     string inputWordFinal;
+    string syndromeWordFinal;
     int recordCount;
-    char word[17];
+    char word1Array[17];
+    char word2Array[17];
     vector<char> wordParityBits;
+    vector<char> wordParityBits2;
     vector<char> inputWord;
     vector<int> parity1;
     vector<int> parity2;

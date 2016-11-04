@@ -53,9 +53,15 @@ void Hamming::loadWords(string word1, string word2){
     //Task - place words in character arrays
     //Returns - nothing
 
+    //cout << word1 << endl;
+    //cout << word2 << endl;
+
     //store word in array
   for(int x = 0; x < WORDSIZE; x++){
-    word[x] = word1[x];
+    word1Array[x] = word1[x];
+  }
+  for(int y = 0; y < WORDSIZE; y++){
+    word2Array[y] = word2[y];
   }
 }
 
@@ -73,17 +79,23 @@ void Hamming::placeCheckBitLocations(){
       //if value is a parity bit, don't insert bit, use dash
     if(x == 5 || x == 13 || x == 17 || x== 19 || x == 20){
       wordParityBits.push_back('-');
+      wordParityBits2.push_back('-');
     }
 
       //not a parity bit, place bit in array
     else{
-      wordParityBits.push_back(word[count]);
+      wordParityBits.push_back(word1Array[count]);
+      wordParityBits2.push_back(word2Array[count]);
       count++;
     }
   }
 
   for(int x = 0; x < wordParityBits.size(); x++){
     cout << wordParityBits[x];
+  }
+  cout << endl;
+  for(int x = 0; x < wordParityBits.size(); x++){
+    cout << wordParityBits2[x];
   }
   cout << endl;
 }
@@ -271,10 +283,9 @@ void Hamming::getKBitCode(){
 
   count = 0;
 
-  /*for(int x = 0; x < kbitWord.size(); x++){
-    cout << kbitWord[x] << " ";
+  for(int x = 0; x < kbitWord.size(); x++){
+    syndromeWordFinal += kbitWord[x];
   }
-  cout << endl;*/
 }
 
 //******************************************************************************
@@ -310,10 +321,10 @@ void Hamming::getInputWord(){
     inputWordFinal += inputWord[x];
   }
 
-  for(int x = 0; x< inputWord.size(); x++){
+  /*for(int x = 0; x< inputWord.size(); x++){
     cout << inputWord[x];
   }
-  cout << endl;
+  cout << endl;*/
 }
 
 //******************************************************************************
@@ -334,6 +345,14 @@ void Hamming::printOriginalWords(string word1, string word2, ofstream &outputFil
   outputFile << "         " << "        The Input Word was stored as:" << endl;
   outputFile << "                  -------------------------" << endl;
   outputFile << "                     " << inputWordFinal << endl;
+  outputFile << endl;
+  outputFile << "         " << "        The two SYNDROME code words are:" << endl;
+  outputFile << "                  -------------------------" << endl;
+  outputFile << "     K-Bit code written into memory  ---  ";
+  for(int x = 0; x < kbitWord.size(); x++){
+    outputFile << kbitWord[x] << " ";
+  }
+  outputFile << endl;
 }
 
 //******************************************************************************
