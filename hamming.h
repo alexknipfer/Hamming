@@ -16,6 +16,7 @@ class Hamming{
     void getCheckBits();
     void getKBitCode();
     void getInputWord();
+    void syndromeWordComparison();
 
   private:
     string word1Final;
@@ -40,6 +41,7 @@ class Hamming{
     vector<int> _parity16;
     vector<int> kbitWord;
     vector<int> kbitWord2;
+    vector<int> syndromeComparison;
 };
 
 #endif

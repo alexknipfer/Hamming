@@ -28,7 +28,7 @@ int main(){
     hamming.getCheckBits();
     hamming.getKBitCode();
     hamming.getInputWord();
-      //go print the original words
+    hamming.syndromeWordComparison();
     hamming.printOriginalWords(word1, word2, outputFile);
     inputFile >> word1;
     inputFile >> word2;
@@ -387,6 +387,14 @@ void Hamming::getKBitCode(){
 
 //******************************************************************************
 
+void Hamming::syndromeWordComparison(){
+  for(int x = 0; x < kbitWord.size(); x++){
+    syndromeComparison.push_back(kbitWord[x]^kbitWord2[x]);
+  }
+}
+
+//******************************************************************************
+
 void Hamming::getInputWord(){
     //Receives - nothing
     //Task - creates input word to be stored
@@ -448,6 +456,14 @@ void Hamming::printOriginalWords(string word1, string word2, ofstream &outputFil
   outputFile << "     K-bit code read from memory     ---  ";
   for(int x = 0; x < kbitWord2.size(); x++){
     outputFile << kbitWord2[x] << " ";
+  }
+  outputFile << endl;
+  outputFile << endl;
+  outputFile << "         " << "        SYNDROME Word comparison is" << endl;
+  outputFile << "                  -------------------------" << endl;
+  outputFile << "                         ";
+  for(int x = 0; x < syndromeComparison.size(); x++){
+    outputFile << syndromeComparison[x] << " ";
   }
   outputFile << endl;
 }

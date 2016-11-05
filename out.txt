@@ -11,3 +11,7 @@ Record # 1        Original input words are:
                   -------------------------
      K-Bit code written into memory  ---  0 0 1 1 0 
      K-bit code read from memory     ---  0 0 0 1 1 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 0 1 0 1 
