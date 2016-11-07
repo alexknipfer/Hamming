@@ -9,21 +9,20 @@ using namespace std;
 
 class Hamming{
   public:
-    Hamming();
     void loadWords(string, string);
-    void printOriginalWords(string, string, ofstream &);
+    void printOriginalWords(string, string, int, ofstream &);
     void placeCheckBitLocations();
     void getCheckBits();
     void getKBitCode();
     void getInputWord();
     void syndromeWordComparison();
+    void detect(ofstream &);
 
   private:
     string word1Final;
     string word2Final;
     string inputWordFinal;
     string syndromeWordFinal;
-    int recordCount;
     char word1Array[17];
     char word2Array[17];
     vector<char> wordParityBits;
@@ -41,7 +40,7 @@ class Hamming{
     vector<int> _parity16;
     vector<int> kbitWord;
     vector<int> kbitWord2;
-    vector<int> syndromeComparison;
+    vector<int> syndromeFinal;
 };
 
 #endif

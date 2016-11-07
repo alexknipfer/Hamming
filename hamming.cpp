@@ -11,11 +11,11 @@ using namespace std;
 #define MAX_SIZE_WORD 20
 
 int main(){
-  Hamming hamming;
   ifstream inputFile("data.txt");
   ofstream outputFile("out.txt");
   string word1;
   string word2;
+  int recordCount = 0;
 
     //read in 1st and 2nd word
   inputFile >> word1;
@@ -23,27 +23,20 @@ int main(){
 
     //make sure valid (ie not end of file)
   while(word1 != "-1"){
+    recordCount++;
+    Hamming hamming;
     hamming.loadWords(word1, word2);
     hamming.placeCheckBitLocations();
     hamming.getCheckBits();
     hamming.getKBitCode();
     hamming.getInputWord();
     hamming.syndromeWordComparison();
-    hamming.printOriginalWords(word1, word2, outputFile);
+    hamming.printOriginalWords(word1, word2, recordCount, outputFile);
+    hamming.detect(outputFile);
     inputFile >> word1;
     inputFile >> word2;
   }
   return 0;
-}
-
-//******************************************************************************
-
-Hamming::Hamming(){
-    //Recieves - nothing
-    //Task - constructor - initialize private members
-    //Returns - nothing
-
-  recordCount = 0;
 }
 
 //******************************************************************************
@@ -389,7 +382,7 @@ void Hamming::getKBitCode(){
 
 void Hamming::syndromeWordComparison(){
   for(int x = 0; x < kbitWord.size(); x++){
-    syndromeComparison.push_back(kbitWord[x]^kbitWord2[x]);
+    syndromeFinal.push_back(kbitWord[x]^kbitWord2[x]);
   }
 }
 
@@ -429,12 +422,28 @@ void Hamming::getInputWord(){
 
 //******************************************************************************
 
-void Hamming::printOriginalWords(string word1, string word2, ofstream &outputFile){
+void Hamming::detect(ofstream &outputFile){
+  int total = 0;
+  for(int x = 0; x < syndromeFinal.size(); x++){
+    total += syndromeFinal[x];
+  }
+
+  if(total == 0){
+    outputFile << "A comparison of the syndrome words indicates that the word "<<
+    "read from memory is correct" << endl;
+  }
+
+  else if(){
+    
+  }
+}
+
+//******************************************************************************
+
+void Hamming::printOriginalWords(string word1, string word2, int recordCount, ofstream &outputFile){
     //Receives - 1st word, 2nd word, output file
     //Task - Print original words and record #
     //Returns - nothing
-
-  recordCount++;
 
     //print original words with record number
   outputFile << "Record # " << recordCount << "        Original input words are:" << endl;
@@ -462,9 +471,11 @@ void Hamming::printOriginalWords(string word1, string word2, ofstream &outputFil
   outputFile << "         " << "        SYNDROME Word comparison is" << endl;
   outputFile << "                  -------------------------" << endl;
   outputFile << "                         ";
-  for(int x = 0; x < syndromeComparison.size(); x++){
-    outputFile << syndromeComparison[x] << " ";
+  for(int x = 0; x < syndromeFinal.size(); x++){
+    outputFile << syndromeFinal[x] << " ";
   }
+  outputFile << endl;
+  outputFile << endl;
   outputFile << endl;
 }
 

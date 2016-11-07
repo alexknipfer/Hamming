@@ -15,3 +15,5 @@ Record # 1        Original input words are:
                  SYNDROME Word comparison is
                   -------------------------
                          0 0 1 0 1 
+
+
