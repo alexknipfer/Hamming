@@ -22,6 +22,7 @@ Record # 1        Original input words are:
       of the word read from memory is an error. It was read 
       as a 0 and must be inverted to a 1.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -49,6 +50,7 @@ Record # 2        Original input words are:
       of the word read from memory is an error. It was read 
       as a 0 and must be inverted to a 1.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -75,6 +77,7 @@ Record # 3        Original input words are:
 A comparison of the syndrome words indicates that the
 word read from memory is correct.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -102,6 +105,7 @@ Record # 4        Original input words are:
       of the word read from memory is an error. It was read 
       as a 0 and must be inverted to a 1.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -128,6 +132,7 @@ Record # 5        Original input words are:
 A comparison of the syndrome words indicates that the
 word read from memory is correct.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -154,6 +159,7 @@ Record # 6        Original input words are:
 The value of the syndrome word indicates that the error
 cannot be corrected. Output data is unreliable.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -180,6 +186,7 @@ Record # 7        Original input words are:
 The value of the syndrome word indicates that the error
 cannot be corrected. Output data is unreliable.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -207,6 +214,7 @@ Record # 8        Original input words are:
       of the word read from memory is an error. It was read 
       as a 1 and must be inverted to a 0.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -234,6 +242,7 @@ Record # 9        Original input words are:
       of the word read from memory is an error. It was read 
       as a 1 and must be inverted to a 0.
 
+##################### END OF RECORD ###########################
 
 
 
@@ -260,6 +269,7 @@ Record # 10        Original input words are:
 A comparison of the syndrome words indicates that the
 word read from memory is correct.
 
+##################### END OF RECORD ###########################
 
 
 

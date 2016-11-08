@@ -421,21 +421,25 @@ void Hamming::detect(ofstream &outputFile){
     decimalValue += tempSyndrome[x] * pow(2, x);
   }
 
+    //check to see if value is above 21 and print correction description
   if(decimalValue > 21){
     outputFile << "The value of the syndrome word indicates that the error" << endl;
     outputFile << "cannot be corrected. Output data is unreliable." << endl;
   }
 
+    //check to see if value is 0 and print correction description
   if(decimalValue == 0){
     outputFile << "A comparison of the syndrome words indicates that the" << endl;
     outputFile << "word read from memory is correct." << endl;
   }
 
+    //ceheck if value is divisible by 2 and print correction description
   else if(decimalValue % 2 == 0){
     outputFile << "The value of the syndrome word indicates that the error" << endl;
     outputFile << "cannot be corrected. Output data is unreliable." << endl;
   }
 
+    //check if value is between 1 and 21 and print correction description
   else if(decimalValue >= 1 && decimalValue <= 21){
     char found;
     for(int x = 0; x < tempInputWord.size(); x++){
@@ -444,18 +448,24 @@ void Hamming::detect(ofstream &outputFile){
       }
     }
 
+      //print correct description if bit value is 1
     if(found == '1'){
       outputFile << "      The syndrome word indicates that the bit in position " << decimalValue << endl;
       outputFile << "      of the word read from memory is an error. It was read " << endl;
       outputFile << "      as a 1 and must be inverted to a 0." << endl;
     }
+
+      //print correct description if bit value is a 0
     else{
       outputFile << "      The syndrome word indicates that the bit in position " << decimalValue << endl;
       outputFile << "      of the word read from memory is an error. It was read " << endl;
       outputFile << "      as a 0 and must be inverted to a 1." << endl;
     }
   }
+
+    //print gap
   outputFile << endl;
+  outputFile << "##################### END OF RECORD ###########################" << endl;
   outputFile << endl;
   outputFile << endl;
   outputFile << endl;
