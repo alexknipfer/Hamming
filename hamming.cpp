@@ -83,14 +83,14 @@ void Hamming::placeCheckBitLocations(){
     }
   }
 
-  for(int x = 0; x < wordParityBits.size(); x++){
+  /*for(int x = 0; x < wordParityBits.size(); x++){
     cout << wordParityBits[x];
   }
   cout << endl;
   for(int x = 0; x < wordParityBits.size(); x++){
     cout << wordParityBits2[x];
   }
-  cout << endl;
+  cout << endl;*/
 }
 
 //******************************************************************************
@@ -156,34 +156,6 @@ void Hamming::getCheckBits(){
       _parity16.push_back(numFromMemory);
     }
   }
-
-    //reverse the vectors for printing
-  //reverse(parity1.begin(), parity1.end());
-  //reverse(parity2.begin(), parity2.end());
-  //reverse(parity4.begin(), parity4.end());
-  //reverse(parity8.begin(), parity8.end());
-  //reverse(parity16.begin(), parity16.end());
-
-  /*for(int y = 0; y < parity1.size(); y++){
-    cout << parity1[y] << " ";
-  }
-  cout << endl;
-  for(int y = 0; y < parity2.size(); y++){
-    cout << parity2[y] << " ";
-  }
-  cout << endl;
-  for(int y = 0; y < parity4.size(); y++){
-    cout << parity4[y] << " ";
-  }
-  cout << endl;
-  for(int y = 0; y < parity8.size(); y++){
-    cout << parity8[y] << " ";
-  }
-  cout << endl;
-  for(int y = 0; y < parity16.size(); y++){
-    cout << parity16[y] << " ";
-  }
-  cout << endl;*/
 }
 
 
