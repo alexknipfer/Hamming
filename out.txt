@@ -1,7 +1,7 @@
 Record # 1        Original input words are:
                   -------------------------
                      1110100111010100
-                     1110100111010110
+                     1110100111000100
 
                  The Input Word was stored as:
                   -------------------------
@@ -10,10 +10,256 @@ Record # 1        Original input words are:
                  The two SYNDROME code words are:
                   -------------------------
      K-Bit code written into memory  ---  0 0 1 1 0 
-     K-bit code read from memory     ---  0 0 0 1 1 
+     K-bit code read from memory     ---  0 1 1 1 1 
 
                  SYNDROME Word comparison is
                   -------------------------
-                         0 0 1 0 1 
+                         0 1 0 0 1 
+
+                  OUTPUT MESSAGE
+                  --------------
+      The syndrome word indicates that the bit in position 9
+      of the word read from memory is an error. It was read 
+      as a 0 and must be inverted to a 1.
+
+
+
+
+Record # 2        Original input words are:
+                  -------------------------
+                     0000010100110010
+                     1000010100110010
+
+                 The Input Word was stored as:
+                  -------------------------
+                     000000101001100011000
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  0 0 1 0 0 
+     K-bit code read from memory     ---  1 0 0 0 1 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         1 0 1 0 1 
+
+                  OUTPUT MESSAGE
+                  --------------
+      The syndrome word indicates that the bit in position 21
+      of the word read from memory is an error. It was read 
+      as a 0 and must be inverted to a 1.
+
+
+
+
+Record # 3        Original input words are:
+                  -------------------------
+                     0100011111000000
+                     0100011111000000
+
+                 The Input Word was stored as:
+                  -------------------------
+                     010001111110010001011
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  1 1 1 1 1 
+     K-bit code read from memory     ---  1 1 1 1 1 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 0 0 0 0 
+
+                  OUTPUT MESSAGE
+                  --------------
+A comparison of the syndrome words indicates that the
+word read from memory is correct.
+
+
+
+
+Record # 4        Original input words are:
+                  -------------------------
+                     1110011001011111
+                     1110111001011111
+
+                 The Input Word was stored as:
+                  -------------------------
+                     111001110010101111110
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  1 0 1 1 0 
+     K-bit code read from memory     ---  0 0 1 1 1 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         1 0 0 0 1 
+
+                  OUTPUT MESSAGE
+                  --------------
+      The syndrome word indicates that the bit in position 17
+      of the word read from memory is an error. It was read 
+      as a 0 and must be inverted to a 1.
+
+
+
+
+Record # 5        Original input words are:
+                  -------------------------
+                     1101101101111100
+                     1101101101111100
+
+                 The Input Word was stored as:
+                  -------------------------
+                     110110011011111100000
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  0 1 0 0 0 
+     K-bit code read from memory     ---  0 1 0 0 0 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 0 0 0 0 
+
+                  OUTPUT MESSAGE
+                  --------------
+A comparison of the syndrome words indicates that the
+word read from memory is correct.
+
+
+
+
+Record # 6        Original input words are:
+                  -------------------------
+                     1101110000011000
+                     1101110010011000
+
+                 The Input Word was stored as:
+                  -------------------------
+                     110110100000101000011
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  0 0 0 1 1 
+     K-bit code read from memory     ---  0 1 1 1 1 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 1 1 0 0 
+
+                  OUTPUT MESSAGE
+                  --------------
+The value of the syndrome word indicates that the error
+cannot be corrected. Output data is unreliable.
+
+
+
+
+Record # 7        Original input words are:
+                  -------------------------
+                     1100100000101101
+                     1100100000101001
+
+                 The Input Word was stored as:
+                  -------------------------
+                     110011000001011100100
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  1 1 0 0 0 
+     K-bit code read from memory     ---  1 1 1 1 0 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 0 1 1 0 
+
+                  OUTPUT MESSAGE
+                  --------------
+The value of the syndrome word indicates that the error
+cannot be corrected. Output data is unreliable.
+
+
+
+
+Record # 8        Original input words are:
+                  -------------------------
+                     0101001011111011
+                     0111001011111011
+
+                 The Input Word was stored as:
+                  -------------------------
+                     010100010111111011101
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  0 1 1 0 1 
+     K-bit code read from memory     ---  1 1 1 1 0 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         1 0 0 1 1 
+
+                  OUTPUT MESSAGE
+                  --------------
+      The syndrome word indicates that the bit in position 19
+      of the word read from memory is an error. It was read 
+      as a 1 and must be inverted to a 0.
+
+
+
+
+Record # 9        Original input words are:
+                  -------------------------
+                     1100111010000000
+                     1100111010000001
+
+                 The Input Word was stored as:
+                  -------------------------
+                     110011110100010001001
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  1 1 1 0 1 
+     K-bit code read from memory     ---  1 1 1 1 0 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 0 0 1 1 
+
+                  OUTPUT MESSAGE
+                  --------------
+      The syndrome word indicates that the bit in position 3
+      of the word read from memory is an error. It was read 
+      as a 1 and must be inverted to a 0.
+
+
+
+
+Record # 10        Original input words are:
+                  -------------------------
+                     1110010010010001
+                     1110010010010001
+
+                 The Input Word was stored as:
+                  -------------------------
+                     111001100100110000111
+
+                 The two SYNDROME code words are:
+                  -------------------------
+     K-Bit code written into memory  ---  1 1 0 1 1 
+     K-bit code read from memory     ---  1 1 0 1 1 
+
+                 SYNDROME Word comparison is
+                  -------------------------
+                         0 0 0 0 0 
+
+                  OUTPUT MESSAGE
+                  --------------
+A comparison of the syndrome words indicates that the
+word read from memory is correct.
+
+
 
 

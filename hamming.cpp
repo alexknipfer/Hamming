@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <math.h>
 #include "hamming.h"
 
 using namespace std;
@@ -11,7 +12,7 @@ using namespace std;
 #define MAX_SIZE_WORD 20
 
 int main(){
-  ifstream inputFile("data.txt");
+  ifstream inputFile("officialData.txt");
   ofstream outputFile("out.txt");
   string word1;
   string word2;
@@ -432,29 +433,70 @@ void Hamming::detect(ofstream &outputFile){
     //Receives - output file
     //Task - print hamming code correction message
     //Returns - nothing
-  int total = 0;
-  for(int x = 0; x < syndromeFinal.size(); x++){
-    total += syndromeFinal[x];
+
+  vector<int> tempSyndrome = syndromeFinal;
+  vector<char> tempInputWord = inputWord;
+  int decimalValue = 0;
+
+  reverse(tempSyndrome.begin(), tempSyndrome.end());
+  reverse(tempInputWord.begin(), tempInputWord.end());
+
+  outputFile << "                  OUTPUT MESSAGE" << endl;
+  outputFile << "                  --------------" << endl;
+
+    //convert binary to decimal
+  for(int x = 0; x < tempSyndrome.size(); x++){
+    decimalValue += tempSyndrome[x] * pow(2, x);
   }
 
-  if(total == 0){
-    outputFile << "A comparison of the syndrome words indicates that the word "<<
-    "read from memory is correct" << endl;
+  if(decimalValue > 21){
+    outputFile << "The value of the syndrome word indicates that the error" << endl;
+    outputFile << "cannot be corrected. Output data is unreliable." << endl;
   }
 
-  else if(){
-
+  if(decimalValue == 0){
+    outputFile << "A comparison of the syndrome words indicates that the" << endl;
+    outputFile << "word read from memory is correct." << endl;
   }
+
+  else if(decimalValue % 2 == 0){
+    outputFile << "The value of the syndrome word indicates that the error" << endl;
+    outputFile << "cannot be corrected. Output data is unreliable." << endl;
+  }
+
+  else if(decimalValue >= 1 && decimalValue <= 21){
+    char found;
+    for(int x = 0; x < tempInputWord.size(); x++){
+      if(x == decimalValue){
+        found = tempInputWord[x];
+      }
+    }
+
+    if(found == '1'){
+      outputFile << "      The syndrome word indicates that the bit in position " << decimalValue << endl;
+      outputFile << "      of the word read from memory is an error. It was read " << endl;
+      outputFile << "      as a 1 and must be inverted to a 0." << endl;
+    }
+    else{
+      outputFile << "      The syndrome word indicates that the bit in position " << decimalValue << endl;
+      outputFile << "      of the word read from memory is an error. It was read " << endl;
+      outputFile << "      as a 0 and must be inverted to a 1." << endl;
+    }
+  }
+  outputFile << endl;
+  outputFile << endl;
+  outputFile << endl;
+  outputFile << endl;
 }
 
 //******************************************************************************
 
 void Hamming::printOriginalWords(string word1, string word2, int recordCount, ofstream &outputFile){
-    //Receives - 1st word, 2nd word, output file
+    //Receives - 1st word, 2nd word, record count, output file
     //Task - Print original words and record #
     //Returns - nothing
 
-    //print original words with record number
+    //print formatted output
   outputFile << "Record # " << recordCount << "        Original input words are:" << endl;
   outputFile << "                  -------------------------" << endl;
   outputFile << "                     " << word1 << endl;
@@ -483,7 +525,6 @@ void Hamming::printOriginalWords(string word1, string word2, int recordCount, of
   for(int x = 0; x < syndromeFinal.size(); x++){
     outputFile << syndromeFinal[x] << " ";
   }
-  outputFile << endl;
   outputFile << endl;
   outputFile << endl;
 }
