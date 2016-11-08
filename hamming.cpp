@@ -406,10 +406,13 @@ void Hamming::detect(ofstream &outputFile){
     //Task - print hamming code correction message
     //Returns - nothing
 
+    //store as temps to reverse without messing original vectors up
   vector<int> tempSyndrome = syndromeFinal;
   vector<char> tempInputWord = inputWord;
-  int decimalValue = 0;
+  int decimalValue = 0; //intialize decimal number
 
+    //reverse the vectors to prevent reverse traversal when converting
+    //from binary to decimal
   reverse(tempSyndrome.begin(), tempSyndrome.end());
   reverse(tempInputWord.begin(), tempInputWord.end());
 
