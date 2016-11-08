@@ -381,7 +381,13 @@ void Hamming::getKBitCode(){
 //******************************************************************************
 
 void Hamming::syndromeWordComparison(){
+    //Receives - nothing
+    //Task - calculates final syndrome word comparison
+    //Returns - nothing
+
+    //go through the syndrome words to compare
   for(int x = 0; x < kbitWord.size(); x++){
+      //use exclusive OR to compare syndrome word bits
     syndromeFinal.push_back(kbitWord[x]^kbitWord2[x]);
   }
 }
@@ -423,6 +429,9 @@ void Hamming::getInputWord(){
 //******************************************************************************
 
 void Hamming::detect(ofstream &outputFile){
+    //Receives - output file
+    //Task - print hamming code correction message
+    //Returns - nothing
   int total = 0;
   for(int x = 0; x < syndromeFinal.size(); x++){
     total += syndromeFinal[x];
@@ -434,7 +443,7 @@ void Hamming::detect(ofstream &outputFile){
   }
 
   else if(){
-    
+
   }
 }
 
