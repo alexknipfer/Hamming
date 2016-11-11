@@ -82,15 +82,6 @@ void Hamming::placeCheckBitLocations(){
       count++;
     }
   }
-
-  /*for(int x = 0; x < wordParityBits.size(); x++){
-    cout << wordParityBits[x];
-  }
-  cout << endl;
-  for(int x = 0; x < wordParityBits.size(); x++){
-    cout << wordParityBits2[x];
-  }
-  cout << endl;*/
 }
 
 //******************************************************************************
