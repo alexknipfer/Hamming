@@ -1,7 +1,38 @@
+//******************  PROGRAM IDENTIFICATION  **********************************
+//*                                                                            *
+//*  PROGRAM FILE NAME: hamming.cpp  ASSIGNMENT #:  2    GRADE: _____          *
+//*   	                                                                       *
+//*  PROGRAM AUTHOR:   ____________________________________                    *
+//*                             Alex Knipfer                                   *
+//*                                                                            *
+//*  COURSE #:   CSC 40300 21             DUE DATE: November 15, 2016          *
+//*                                                                            *
+//******************************************************************************
+
+
+//********************* PROGRAM DESCRIPTION ************************************
+//*    Process: This program is a implementation of error-correcting codes     *
+//*             known as hamming codes developed by Richard Hamming.           *
+//*                                                                            *
+//*    USER DEFINED                                                            *
+//*     MODULES:       : printHeader - print program header                    *
+//*                      printFooter - print program footer                    *
+//*                      loadWords - read and store input words in arrays      *
+//*                      placeCheckBitLocations - placed word in array with    *
+//*                                               parity bit locations         *
+//*                      getCheckBits - calculates check bits                  *
+//*                      getKBitCode - creates K-bit syndrome word             *
+//*                      getInputWord - create input word to be stored         *
+//*                      syndromeWordComparison - compares two syndrome's      *
+//*                      detect - prints the correction codes                  *
+//*                      printOriginalWords - prints original words read in    *
+//******************************************************************************
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include <algorithm>
 #include <math.h>
 #include "hamming.h"
@@ -11,12 +42,19 @@ using namespace std;
 #define WORDSIZE 16
 #define MAX_SIZE_WORD 20
 
+  //prototypes
+void printHeader(ofstream &);
+void printFooter(ofstream &);
+
 int main(){
   ifstream inputFile("officialData.txt");
   ofstream outputFile("out.txt");
   string word1;
   string word2;
   int recordCount = 0;
+
+    //print header
+  printHeader(outputFile);
 
     //read in 1st and 2nd word
   inputFile >> word1;
@@ -37,6 +75,9 @@ int main(){
     inputFile >> word1;
     inputFile >> word2;
   }
+
+    //print footer
+  printFooter(outputFile);
   return 0;
 }
 
@@ -506,3 +547,35 @@ void Hamming::printOriginalWords(string word1, string word2, int recordCount, of
 }
 
 //******************************************************************************
+
+void printHeader(ofstream &Outfile)
+{
+		//Receives - the output file
+		//Task- Prints the output preamble
+		//Returns - Nothing
+	Outfile << setw(30) << "Alex Knipfer ";
+	Outfile << setw(17) << "CSC 40300";
+	Outfile << setw(15) << "Section 21" << endl;
+	Outfile << setw(30) << "Fall 2016";
+	Outfile << setw(20) << "Assignment #2" << endl;
+	Outfile << setw(35) << "--------------------------------------";
+	Outfile << setw(35) << "--------------------------------------\n\n";
+	return;
+}
+
+//******************************************************************************
+
+void printFooter(ofstream &Outfile)
+{
+    //Receives - the output file
+    //Task - Prints the output footer
+    //Returns - nothing
+	Outfile << endl;
+	Outfile << setw(35) << "--------------------------------" << endl;
+	Outfile << setw(35) << "|    END OF PROGRAM OUTPUT     |" << endl;
+	Outfile << setw(35) << "--------------------------------" << endl;
+
+	return;
+}
+
+//*********************** END OF PROGRAM *************************************//
